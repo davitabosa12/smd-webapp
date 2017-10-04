@@ -8,7 +8,7 @@ $(document).ready(function(){
     database = firebase.database();
     tabela = document.getElementsByTagName("table")[0];
 
-    database.ref("users").on("value", function(dataSnapshot){
+    database.ref("users").orderByChild("nome").on("value", function(dataSnapshot){
         console.log("ok");
         dataSnapshot.forEach(child =>{
             var nome = child.val().nome;
@@ -45,15 +45,15 @@ function TestaCPF(strCPF) {
     var Resto;
     Soma = 0;   
     strCPF  = removerCaractereCPF(strCPF);
-    if (strCPF == "00000000000")
-	return false;
+    if (strCPF == "00000000000" || strCPF.length > 11)
+	    return false;
     for (i=1; i<=9; i++)
 	Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i); 
     Resto = (Soma * 10) % 11;
     if ((Resto == 10) || (Resto == 11)) 
 	Resto = 0;
     if (Resto != parseInt(strCPF.substring(9, 10)) )
-	return false;
+	    return false;
 	Soma = 0;
     for (i = 1; i <= 10; i++)
        Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
