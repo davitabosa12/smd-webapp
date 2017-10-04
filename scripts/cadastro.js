@@ -1,9 +1,11 @@
 var tabela;
 var btnEnvia;
+var database;
+var lol;
 $(document).ready(function(){
     btnEnvia = document.getElementById("envia");
     btnEnvia.addEventListener("click",enviarDados,false);
-    var database = firebase.database();
+    database = firebase.database();
     tabela = document.getElementsByTagName("table")[0];
 
     database.ref("users").on("value", function(dataSnapshot){
@@ -42,7 +44,7 @@ function TestaCPF(strCPF) {
     var Soma;
     var Resto;
     Soma = 0;   
-    //strCPF  = RetiraCaracteresInvalidos(strCPF,11);
+    strCPF  = removerCaractereCPF(strCPF);
     if (strCPF == "00000000000")
 	return false;
     for (i=1; i<=9; i++)
@@ -65,10 +67,19 @@ function TestaCPF(strCPF) {
 function enviarDados(){
     var nome = document.getElementsByName("nome")[0].value;
     var matricula = document.getElementsByName("matricula")[0].value;
+    lol = matricula;
     var cpf = document.getElementsByName("cpf")[0].value;
-    if(TestaCPF(cpf)){
-        
+    var newUser = {
+        nome: nome,
+        matricula: matricula,
+        cpf: cpf
+    };
+    if(TestaCPF(cpf) && !(matricula == undefined || matricula == "") ){
+        database.ref("users").child(matricula).set(newUser);
     }
-
-    
+}
+function removerCaractereCPF(strCPF){
+    var nova = strCPF;
+    nova = nova.replace(/([^0-9])/g,'');
+    return nova;
 }
