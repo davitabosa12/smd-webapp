@@ -67,13 +67,16 @@ function TestaCPF(strCPF) {
 function enviarDados(){
     var nome = document.getElementsByName("nome")[0].value;
     var matricula = document.getElementsByName("matricula")[0].value;
-    lol = matricula;
     var cpf = document.getElementsByName("cpf")[0].value;
     var newUser = {
         nome: nome,
         matricula: matricula,
         cpf: cpf
     };
+    if(verificarExistenciaUsuario(matricula)){
+        alert("O usuario ja esta cadastrado.");
+        return;
+    }
     if(TestaCPF(cpf) && !(matricula == undefined || matricula == "") ){
         database.ref("users").child(matricula).set(newUser);
     }
@@ -82,4 +85,19 @@ function removerCaractereCPF(strCPF){
     var nova = strCPF;
     nova = nova.replace(/([^0-9])/g,'');
     return nova;
+}
+/**
+ * Verifica no banco de dados se o usuario existe ou nao.
+ */
+function verificarExistenciaUsuario(matricula){
+    var response = false;
+    var result = false;
+    database.ref("users/" + matricula).on("value", dataSnapshot =>{
+        response = true;
+        if(dataSnapshot.exists()){
+            result = true;
+        }
+    });
+    while(!response);
+    return result;
 }
