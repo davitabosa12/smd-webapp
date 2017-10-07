@@ -7,6 +7,7 @@ $(document).ready(function(){
     btnEnvia.addEventListener("click",enviarDados,false);
     database = firebase.database();
     tabela = document.getElementsByTagName("table")[0];
+    tabela = document.getElementById("tbd-alunos")
 
     database.ref("users").orderByChild("nome").on("value", function(dataSnapshot){
         console.log("ok");
