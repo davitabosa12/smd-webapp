@@ -99,6 +99,9 @@ function verificarExistenciaUsuario(matricula){
             result = true;
         }
     });
+    setTimeout(()=>{
+        response = true;
+    },2000);
     while(!response);
     return result;
 }
