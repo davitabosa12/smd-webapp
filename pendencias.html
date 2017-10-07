@@ -4,19 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+     <script>
+
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAJQSF4mCK-_t4jFOIFf_q012nlNyY_du0",
+            authDomain: "smdevasao.firebaseapp.com",
+            databaseURL: "https://smdevasao.firebaseio.com",
+            projectId: "smdevasao",
+            storageBucket: "smdevasao.appspot.com",
+            messagingSenderId: "1078082262613"
+        };
+        firebase.initializeApp(config);
+
+
+    </script>
+    <script src="scripts/pendencias.js"></script>
     <title>SMD App | Pendencias</title>
 </head>
 <body>
     <!-- Pendencias aparecerão aqui (cards) -->
     <div id="tabela-pendencias">
-        <thead>
-            <th>Aluno</th>
-            <th>Matricula</th>
-            <th>Serviço</th>
-        </thead>
-        <tbody id="lista-alunos">
-            <!-- Conteudo dinamico pendencias aqui -->
-        </tbody>
+        <table>
+            <thead>
+                <th>Aluno</th>
+                <th>Matricula</th>
+                <th>Serviço</th>
+            </thead>
+            <tbody id="lista_alunos">
+                <!-- Conteudo dinamico pendencias aqui -->
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

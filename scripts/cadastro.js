@@ -9,8 +9,9 @@ $(document).ready(function(){
     tabela = document.getElementsByTagName("table")[0];
     tabela = document.getElementById("tbd-alunos")
 
-    database.ref("users").orderByChild("nome").on("value", function(dataSnapshot){
+    database.ref("alunos").orderByChild("nome").on("value", function(dataSnapshot){
         console.log("ok");
+        tabela.innerHTML = "";
         dataSnapshot.forEach(child =>{
             var nome = child.val().nome;
             var matricula = child.key;
@@ -72,14 +73,15 @@ function enviarDados(){
     var newUser = {
         nome: nome,
         matricula: matricula,
-        cpf: cpf
+        cpf: cpf,
+        registrado: false
     };
     if(verificarExistenciaUsuario(matricula)){
         alert("O usuario ja esta cadastrado.");
         return;
     }
     if(TestaCPF(cpf) && !(matricula == undefined || matricula == "") ){
-        database.ref("users").child(matricula).set(newUser);
+        database.ref("alunos").child(matricula).set(newUser);
     }
 }
 function removerCaractereCPF(strCPF){
@@ -93,7 +95,7 @@ function removerCaractereCPF(strCPF){
 function verificarExistenciaUsuario(matricula){
     var response = false;
     var result = false;
-    database.ref("users/" + matricula).on("value", dataSnapshot =>{
+    database.ref("alunos/" + matricula).on("value", dataSnapshot =>{
         response = true;
         if(dataSnapshot.exists()){
             result = true;
@@ -102,6 +104,6 @@ function verificarExistenciaUsuario(matricula){
     setTimeout(()=>{
         response = true;
     },2000);
-    while(!response);
+    while(!response); //aguarda resposta do servidor por 2 segundos
     return result;
 }
