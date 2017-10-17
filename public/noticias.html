@@ -2,23 +2,12 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>Cadastro de noticias</title>
-        
+
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 
-     <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAJQSF4mCK-_t4jFOIFf_q012nlNyY_du0",
-    authDomain: "smdevasao.firebaseapp.com",
-    databaseURL: "https://smdevasao.firebaseio.com",
-    projectId: "smdevasao",
-    storageBucket: "smdevasao.appspot.com",
-    messagingSenderId: "1078082262613"
-  };
-  firebase.initializeApp(config);
-</script>
+     <script src="scripts/firebaseinit.js"></script>
         <script src="scripts/jquery.js"></script>
-        
+
     </head>
     <body>
             <label>Titulo:</label><input name="titulo" placeholder="Título" type="text"></label><br>
@@ -34,5 +23,5 @@
         <section id="news"></section>
         <script src="scripts/process.js" type="text/javascript"></script>
         <script src="scripts/processanoticia.js"></script>
-    
+
 </body></html>
