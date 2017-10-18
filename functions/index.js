@@ -11,6 +11,8 @@ admin.initializeApp(functions.config().firebase);
 exports.sendMessageToTopic = functions.database.ref("noticia/{pushID}").onCreate(dataSnapshot =>{
     
     var tipo = dataSnapshot.data.child("tipo").val();
+    var idNoticia = dataSnapshot.data.key;
+    console.log("idnoticia",idNoticia);
     tipo = Number(tipo);
     var descricao = dataSnapshot.data.child("descricao").val();
     descricao = descricao.length > 30 ? descricao.substring(0,28) + "..." : descricao;
@@ -19,7 +21,14 @@ exports.sendMessageToTopic = functions.database.ref("noticia/{pushID}").onCreate
     var payload = {
         notification:{
             title: titulo,
-            body: descricao
+            body: descricao,
+            sound: "default"
+        },
+        data:{
+            title: titulo,
+            msg: descricao,
+            pushId:idNoticia
+
         }
     };
     var topic = "/topics/";
@@ -42,7 +51,7 @@ exports.sendMessageToTopic = functions.database.ref("noticia/{pushID}").onCreate
             break;
     
         default:
-//            console.log("Nao foi enviada a mensagem. Nao ha topicos!");
+           console.log("Nao foi enviada a mensagem. Nao ha topicos!");
             break;
     }
     admin.messaging().sendToTopic(topic,payload).then(function(response) {
