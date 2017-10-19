@@ -61,3 +61,10 @@ exports.sendMessageToTopic = functions.database.ref("noticia/{pushID}").onCreate
     console.log("Erro no envio: ", error);
   });
 });
+
+exports.novoPedido = functions.database.ref("pedidoIngresso/{uid}").onCreate(snap =>{
+    const data  = snap.data;
+    const userID  = data.key;
+    const userRef = admin.database().ref("users/"+userID);
+    userRef.child("enviadoPedido").set(true);
+});
