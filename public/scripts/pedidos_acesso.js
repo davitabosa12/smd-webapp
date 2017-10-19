@@ -1,10 +1,10 @@
 var database = firebase.database();
+var ss;
 var pedidoRef = database.ref("pedidoIngresso");
 window.onload = function(){
     var tabela = document.getElementById("tabela_corpo");
     pedidoRef.orderByKey().limitToFirst(20).on("child_added", snap =>{
-        var data = snap.data;
-        renderLinha(tabela,data);
+        renderLinha(tabela,snap);
     });
 }
 /**
@@ -24,8 +24,8 @@ function renderLinha(tabela,dados) {
     nome.innerHTML = dados.child("nome").val();
     cpf.innerHTML = dados.child("cpf").val();
 
-    adicionarBotoes(row,alert("Matricula" + dados.child("matricula").val() + "deferida."),
-                        alert("Matricula" + dados.child("matricula").val() + "deferida."));
+    adicionarBotoes(row,()=>{alert("Matricula" + dados.child("matricula").val() + "deferida.")},
+                        ()=>{alert("Matricula" + dados.child("matricula").val() + "indeferida.")});
 
 }
 /**

@@ -68,3 +68,21 @@ exports.novoPedido = functions.database.ref("pedidoIngresso/{uid}").onCreate(sna
     const userRef = admin.database().ref("users/"+userID);
     userRef.child("enviadoPedido").set(true);
 });
+
+exports.deferirCadastro = functions.https.onRequest((req,res) =>{
+    const modo = req.query.resultado;
+    const uid = req.query.uid;
+
+        if(modo == "deferido"){
+            //deferir aluno
+            res.send("UID " + uid + " foi deferido." );
+        }
+        else if(modo == "indeferido"){
+            //indeferir aluno
+            res.send("UID " + uid + " foi indeferido." );
+        }
+        else{
+            res.send("O usuario " + uid + " nao existe.");
+        }
+
+});
