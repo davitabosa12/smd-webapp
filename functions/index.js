@@ -73,16 +73,62 @@ exports.deferirCadastro = functions.https.onRequest((req,res) =>{
     const modo = req.query.resultado;
     const uid = req.query.uid;
 
-        if(modo == "deferido"){
-            //deferir aluno
-            res.send("UID " + uid + " foi deferido." );
-        }
-        else if(modo == "indeferido"){
-            //indeferir aluno
-            res.send("UID " + uid + " foi indeferido." );
+    
+    const pedidoRef = admin.database().ref("pedidoIngresso/" + uid);
+    pedidoRef.once("value", snap =>{
+        if(snap.exists()){
+            var aluno = {
+                nome : snap.child("nome").val(),
+                matricula : snap.child("matricula").val(),
+                cpf : snap.child("cpf").val(),
+                uid : snap.key
+            };
+            const alunosRef = admin.database().ref("alunos/" + aluno.matricula);
+            alunosRef.once("value", snap =>{
+                if(snap.exists()){
+                    //Nao fazer nada, ja que o aluno existe no sistema.
+                    console.error("A matricula " + snap.key +" ja esta no sistema");
+                    res.send("A matricula " + snap.key +" ja esta no sistema");
+                    res.redirect("index.html");
+                }
+                else{ //continuar
+                    //deferir ou indeferir?
+                    if(modo == "deferido"){
+                        //deferir aluno
+                        console.log(aluno.cpf + " , " + aluno.matricula + " , " + aluno.nome + " , " + aluno.uid);
+                        alunosRef.set(aluno);
+                        
+                        let userRef = admin.database().ref("users/" + uid);
+                        userRef.child("confirmadoSecretaria").set(true); //confirma na secretaria.
+                        pedidoRef.set(null); //apaga dos PedidosAcesso
+
+                        console.log("Aluno de matricula " + aluno.matricula +" associado com o UID " + aluno.uid);
+                        res.send("Aluno de matricula " + aluno.matricula +" associado com o UID " + aluno.uid);
+                        //envia msg pro usuario
+                    }
+                    else if(modo == "indeferido"){
+                        //indeferir aluno
+                        pedidoRef.set(null);
+                        let userRef = admin.database().ref("users/" + uid);
+                        userRef.child("enviadoPedido").set(false);
+                        console.log("Aluno de matricula " + aluno.matricula + " foi indeferido.");
+                        res.send("Aluno de matricula " + aluno.matricula + " foi indeferido.");
+                        //envia msg pro usuario
+                    }
+                    else{
+                        //comando errado.
+                        console.log("Metodo errado. Metodo deve ser \"deferido\" ou \"indeferido\".");
+                        res.send("Metodo errado. Metodo deve ser \"deferido\" ou \"indeferido\".");
+                    }
+                    
+                }
+            });
         }
         else{
-            res.send("O usuario " + uid + " nao existe.");
+            console.log("UID " + uid + " nao se refere a um pedido.");
+            res.send("UID " + uid + " nao se refere a um pedido.");
         }
+        
+    });
 
 });
