@@ -1,8 +1,29 @@
 .centralizado{
-    margin: auto;
-    width: 30%;
+    width: 350px;
+    margin: 0 auto;
+    
 }
 
-.centralizadoV{
-    vertical-align: middle;
+.login-dialog{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 50px;
+}
+
+div.match-parent{
+    width: 100%;
+}
+
+.Center-Container {
+  position: relative;
+  height: 100%;
+}
+
+.Absolute-Center {
+  width: 350px;
+  height: 20%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }

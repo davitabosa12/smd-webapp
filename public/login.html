@@ -15,17 +15,19 @@
     <title>SMD App - Login</title>
 </head>
 <body>
-    <div id="formulario" class="centralizado centralizadoV">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" class="mdl-textfield__input" id="email">
-            <label class="mdl-textfield__label" for="email">Email</label>
-        </div><br>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="password" class="mdl-textfield__input" id="senha">
-            <label class="mdl-textfield__label" for="senha">Senha</label>
-        </div><br>
-    
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Login</button>
+    <div id="form-container" class="center-container">
+        <div id="formulario" class="login-dialog centralizado Absolute-Center">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label match-parent">
+                <input type="text" class="mdl-textfield__input" id="email">
+                <label class="mdl-textfield__label" for="email">Email</label>
+            </div><br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label match-parent">
+                <input type="password" class="mdl-textfield__input" id="senha">
+                <label class="mdl-textfield__label" for="senha">Senha</label>
+            </div><br>
+        
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Login</button>
+        </div>
     </div>
 </body>
 </html>
