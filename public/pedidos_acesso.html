@@ -11,6 +11,7 @@
     <title>Pedidos de acesso</title>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
     <script type="text/javascript" src="scripts/firebaseinit.js"></script>
+    <script src="debug/scripts/faker.js"></script>
     <script src="scripts/pedidos_acesso.js"></script>
   </head>
   <body>
@@ -51,14 +52,16 @@
 
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col">
-                   <table>
+                   <table class="mdl-data-table mdl-js-data-table">
                       <thead>
-                        <th>Nome Completo</th>
-                        <th>Matricula</th>
-                        <th>CPF</th>
+                        <tr>
+                          <th class="mdl-data-table__cell--non-numeric">Nome Completo</th>
+                          <th>Matricula</th>
+                          <th>CPF</th>
+                        </tr>
 
                       </thead>
-                      <tbody id="tabela_corpo"></tbody>
+                      <tbody id="tabela_corpo" ></tbody>
                   </table>
                 </div>
             </div>
