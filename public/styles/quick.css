@@ -21,8 +21,8 @@ div.match-parent{
 
 .Absolute-Center {
   width: 350px;
-  height: 20%;
-  overflow: auto;
+  height: 25%;
+  overflow: hidden;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
