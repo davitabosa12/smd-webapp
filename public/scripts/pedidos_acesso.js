@@ -15,17 +15,9 @@ class Mock {
 var pedidoRef = database.ref("pedidoIngresso");
 window.onload = function(){
     var tabela = document.getElementById("tabela_corpo");
-    /*pedidoRef.orderByKey().limitToFirst(20).on("child_added", snap =>{
+    pedidoRef.orderByKey().limitToFirst(20).on("child_added", snap =>{
         renderLinha(tabela,snap);
-    });*/
-
-    //mockup data
-    var data = [];
-    for(var i = 0; i < 20; i++){
-        var n = new Mock(faker.name.findName(),faker.random.number(),faker.random.number());
-        renderLinha(tabela,n);
-    }
-    
+    });
 }
 /**
  * 
@@ -42,6 +34,7 @@ function renderLinha(tabela,dados) {
 
     
 
+    
     matricula.innerHTML = dados.child("matricula").val();
     nome.innerHTML = dados.child("nome").val();
     cpf.innerHTML = dados.child("cpf").val();

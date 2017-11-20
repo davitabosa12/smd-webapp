@@ -23,8 +23,12 @@ window.onload = function(){
 function addLinha(tabela, ...coisas){
     
     var row = tabela.insertRow(-1);
-    for(var i =0; i < arguments.length - 1; i++){
-        row.insertCell(i).innerHTML = coisas[i];
+    for(var i =0; i < arguments.length -1; i++){
+        console.log(coisas);
+        var temp = row.insertCell(i);
+        if(i == 0)
+            temp.classList.add("mdl-data-table__cell--non-numeric");
+        temp.innerHTML = coisas[i];
     }
 
 }
