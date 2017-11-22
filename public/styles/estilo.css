@@ -1,54 +1,11 @@
-body{
-    margin : 0;
-}
-header{
-    background-color : #999999;
-    
-    
-}
-.logo{
-    float:left;
-    
-}
-header::after{
-    content: '';
-    display: table;
-    clear : both;
-}
-nav{
-    float: right;
+.bt-grande{
+    background-color: #ccc;
+    cursor: pointer;
 }
 
-nav ul{
-    margin:0;
-    padding: 0;
-    list-style: none;
+.bt-grande:hover{
+    background-color: #aea;
 }
-nav li{
-    display: inline-block;
-    margin-left : 80px;
-    padding-top : 30px;
-}
-nav li:last-child{
-    margin-right: 50px;
-}
-table{
-    width: 90%;
-    margin: 0 auto;
-}
-table, td,tr{
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-tr > td:first-child{
-    width: 50%;
-}
-tr > td:nth-child(2){
-    width: 25%;
-}
-.linha-identificadora{
-    background-color :#eeee00 !important;
-}
-tr:nth-child(odd){
-    background-color : #999
+.container{
+    margin-top: 20px;
 }
