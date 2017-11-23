@@ -1,10 +1,12 @@
 var dadosRecebidos = {
     data:undefined
 };
+
+var noticiaRef = firebase.database().ref("noticia");
 $(document).ready(function(){
     var btnGet = document.getElementById("get_noticias");
     btnGet.addEventListener("click",function(){
-     pegaNoticia(dadosRecebidos);   
+     pegaNoticiaFirebase();   
     
     },false);
     
@@ -33,6 +35,17 @@ function pegaNoticia(callbackVariable){
                         callbackVariable.data = Object.entries(data);
                         renderNoticia(callbackVariable.data);
                     });
+}
+
+function pegaNoticiaFirebase(){
+    var section = document.getElementById("news");
+    section.innerHTML = "";
+    noticiaRef.orderByKey().limitToFirst(20).on("child_added", snap =>{
+        var titulo = snap.child("titulo").val();
+        var desc = snap.child("descricao").val();
+        var tipo = snap.child("tipo").val();
+        newsBit(titulo,desc,tipo,section);
+    });
 }
 
 function newsBit(titulo, desc, tipo, destino) {
