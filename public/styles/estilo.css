@@ -6,6 +6,10 @@
 .bt-grande:hover{
     background-color: #aea;
 }
-.container{
-    margin-top: 20px;
+
+li.logo{
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 80px;
+
 }

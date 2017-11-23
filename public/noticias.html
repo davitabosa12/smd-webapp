@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="styles/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="styles/estilo.css"  media="screen,projection"/>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/materialize.js"></script>
@@ -24,6 +25,12 @@
 
     </script>
     </head>
+    <style>
+        header, main, footer {
+            padding-left: 300px;
+        }
+
+        </style>
     <body>
         
     <!-- NAVIGATION BAR -->
@@ -37,14 +44,15 @@
                 <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
                 <li><a class="mdl-navigation__link" href="#">Logout</a></li>
             </ul>
-            <ul class="side-nav" id="mobile-demo">
+        </div>        
+    </nav>
+    <ul id="slide-out" class="side-nav fixed">
+                <li class="logo"><a href="#" class="brand-logo logo"><object data="images/logo_smd_black.svg" type="image/svg+xml"></object></a></li>
                 <li><a class="mdl-navigation__link" href="noticias.html">Nova noticia</a></li>
                 <li><a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a></li>
                 <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
                 <li><a class="mdl-navigation__link" href="#">Logout</a></li>
-            </ul>
-        </div>        
-    </nav>
+    </ul>
     <!-- MAIN CONTENT -->
     <main class="container">
         <div class="row">
@@ -80,8 +88,9 @@
 
             
             <div class="col s8">
-                Noticias
-                <section id="news"></section>
+                <section> <!-- TODO: TRANSFORMAR NOTICIAS EM COLLAPSIBLES -->
+                    <ul class="collapsible" id="news"></ul>
+                </section>
             </div>
 
             
