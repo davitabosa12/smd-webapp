@@ -1,0 +1,37 @@
+[debug] [2017-11-25T01:16:14.845Z] ----------------------------------------------------------------------
+[debug] [2017-11-25T01:16:14.849Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions,hosting
+[debug] [2017-11-25T01:16:14.849Z] CLI Version:   3.15.3
+[debug] [2017-11-25T01:16:14.849Z] Platform:      linux
+[debug] [2017-11-25T01:16:14.849Z] Node Version:  v8.4.0
+[debug] [2017-11-25T01:16:14.849Z] Time:          Fri Nov 24 2017 22:16:14 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:14.849Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-25T01:16:14.868Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-25T01:16:14.868Z] > authorizing via signed-in user
+[debug] [2017-11-25T01:16:14.871Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/smdevasao  
+ Fri Nov 24 2017 22:16:14 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:16.240Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T01:16:16.242Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/smdevasao/tokens  
+ Fri Nov 24 2017 22:16:16 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:17.212Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/davi/Documentos/Projects/smd-webapp'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-25T01:16:17.948Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/smdevasao  
+ Fri Nov 24 2017 22:16:17 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:17.948Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/smdevasao/apiKeys  
+ Fri Nov 24 2017 22:16:17 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:17.949Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/smdevasao  
+ Fri Nov 24 2017 22:16:17 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:19.064Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T01:16:19.065Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1078082262613/clients/_:getWebAppConfig  
+ Fri Nov 24 2017 22:16:19 GMT-0300 (-03)
+[debug] [2017-11-25T01:16:19.074Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T01:16:19.252Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T01:16:19.956Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: deferirCadastro: http://localhost:5001/smdevasao/us-central1/deferirCadastro
+[info] ✔  functions: pegarEmailAdmin: http://localhost:5001/smdevasao/us-central1/pegarEmailAdmin

@@ -1,109 +1,70 @@
-var tabela;
-var btnEnvia;
-var database;
-var lol;
+var password;
+var passwordConfirm;
+var btnEnviar;
+var txtUsername
+var txtEmail;
 $(document).ready(function(){
-    btnEnvia = document.getElementById("envia");
-    btnEnvia.addEventListener("click",enviarDados,false);
-    database = firebase.database();
-    tabela = document.getElementsByTagName("table")[0];
-    tabela = document.getElementById("tbd-alunos")
+    txtUsername = document.getElementById("username");
+    txtEmail = document.getElementById("email");
 
-    database.ref("alunos").orderByChild("nome").on("value", function(dataSnapshot){
-        console.log("ok");
-        tabela.innerHTML = "";
-        dataSnapshot.forEach(child =>{
-            var nome = child.val().nome;
-            var matricula = child.key;
-            var cpf = child.val().cpf;
-            //adiciona a linha na tabela
-            addLinha(tabela,nome,Number(matricula),cpf);
+    password = document.getElementById("senha");
+    password.addEventListener("focus",confereSenha,false);
+    password.addEventListener("focusout",confereSenha,false);
+    password.addEventListener("keyup",confereSenha,false);
 
-        })//teste do lambda
-    });
+    passwordConfirm = document.getElementById("senha-repita");
+    passwordConfirm.addEventListener("focus",confereSenha,false);
+    passwordConfirm.addEventListener("focusout",confereSenha,false);
+    passwordConfirm.addEventListener("keyup",confereSenha,false);
+    
+    btnEnviar = document.getElementById("enviar");
+    btnEnviar.addEventListener("click",cadastrar,false);
+
 });
-/**
- * Adiciona uma linha de alunos na tabela
- * @param {HTMLTableElement} tabela A tabela destino
- * @param {string} nome Nome do aluno
- * @param {number} matricula matricula do aluno
- * @param {string} cpf cpf do aluno
- */
-function addLinha(tabela, nome, matricula, cpf){
-    var row = tabela.insertRow(-1);
-    var cellNome = row.insertCell(0);
-    var cellMat = row.insertCell(1);
-    var cellCpf = row.insertCell(2);
 
-    cellNome.innerHTML = nome;
-    cellMat.innerHTML = matricula;
-    cellCpf.innerHTML = cpf;
-}
-
-//Retirado do site http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/funcoes.js
-//Verifica se CPF é válido
-function TestaCPF(strCPF) {
-    var Soma;
-    var Resto;
-    Soma = 0;   
-    strCPF  = removerCaractereCPF(strCPF);
-    if (strCPF == "00000000000" || strCPF.length > 11)
-	    return false;
-    for (i=1; i<=9; i++)
-	Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i); 
-    Resto = (Soma * 10) % 11;
-    if ((Resto == 10) || (Resto == 11)) 
-	Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10)) )
-	    return false;
-	Soma = 0;
-    for (i = 1; i <= 10; i++)
-       Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
-    if ((Resto == 10) || (Resto == 11)) 
-	Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11) ) )
-        return false;
-    return true;
-}
-function enviarDados(){
-    var nome = document.getElementsByName("nome")[0].value;
-    var matricula = document.getElementsByName("matricula")[0].value;
-    var cpf = document.getElementsByName("cpf")[0].value;
-    var newUser = {
-        nome: nome,
-        matricula: matricula,
-        cpf: cpf,
-        registrado: false
-    };
-    if(verificarExistenciaUsuario(matricula)){
-        alert("O usuario ja esta cadastrado.");
-        return;
-    }
-    if(TestaCPF(cpf) && !(matricula == undefined || matricula == "") ){
-        database.ref("alunos").child(matricula).set(newUser);
-    }
-}
-function removerCaractereCPF(strCPF){
-    var nova = strCPF;
-    nova = nova.replace(/([^0-9])/g,'');
-    return nova;
-}
-/**
- * Verifica no banco de dados se o usuario existe ou nao.
- */
-function verificarExistenciaUsuario(matricula){
-    var response = false;
-    var result = false;
-    database.ref("alunos/" + matricula).on("value", dataSnapshot =>{
-        response = true;
-        if(dataSnapshot.exists()){
-            result = true;
+function confereSenha(){
+        if(password.value === passwordConfirm.value 
+        && password.value != "" 
+        && passwordConfirm.value != ""){
+            passwordConfirm.classList.remove("invalid");
+            passwordConfirm.classList.add("valid");
         }
+        else{
+            passwordConfirm.classList.remove("valid");
+            passwordConfirm.classList.add("invalid");
+
+        }
+}
+function checaCampos(){
+    if(password.value != "" 
+    && passwordConfirm != ""
+    && txtEmail.value != ""
+    && txtUsername.value != "")
+        return true;
+    else
+        return false;
+}
+function cadastrar(){
+    if(checaCampos()){
+        novoAdmin(txtUsername.value,txtEmail.value,password.value);
+    }
+    else{
+        Materialize.toast("Preencha todos os campos.", 5000);
+    }
+}
+function novoAdmin(username, email, senha){
+    var auth = firebase.auth();
+    auth.createUserWithEmailAndPassword(email, senha).then(user =>{
+        var uid = user.uid;
+        var adminRef = firebase.database().ref("admin/" + username);
+        var newAdmin = {
+            username: username,
+            uid: uid,
+            email: email
+        }
+        adminRef.set(newAdmin);
+        Materialize.toast("Cadastrado com sucesso!", 3000);
+    }).catch(error =>{
+        Materialize.toast("Houve um erro no cadastro: " + error, 3000);
     });
-    setTimeout(()=>{
-        response = true;
-    },2000);
-    while(!response); //aguarda resposta do servidor por 2 segundos
-    return result;
 }

@@ -51,11 +51,16 @@ function newsBitMaterialize(titulo, desc, tipo, destino) {
     icon.classList.add("material-icons");
     icon.style.verticalAlign = "middle";
 
-    var titl = document.createElement("p");
+    var titl = document.createElement("h5");
     titl.innerHTML = titulo;
 
     var descricao = document.createElement("p");
     descricao.innerHTML = desc;
+
+    var preview = document.createElement("p");
+    preview.innerHTML = desc;
+    preview.classList.add("truncate");
+    preview.style.marginLeft = "30px";
 
     //saber qual icone usar
     tipo = Number(tipo) || -1;
@@ -84,6 +89,7 @@ function newsBitMaterialize(titulo, desc, tipo, destino) {
 
     header.appendChild(icon);
     header.appendChild(titl);
+    //header.appendChild(preview);
     body.appendChild(descricao);
     container.appendChild(header);
     container.appendChild(body);

@@ -132,3 +132,25 @@ exports.deferirCadastro = functions.https.onRequest((req,res) =>{
     });
 
 });
+
+exports.pegarEmailAdmin = functions.https.onRequest((req,res)=>{
+    const username = req.query.username;
+    const adminRef = admin.database().ref("admin/" + username);
+    adminRef.once("value", snap =>{
+        if(snap.exists()){
+            //caminho feliz
+            console.log("username existe");
+            res.header('Access-Control-Allow-Origin','*');
+            res.status(200);
+            res.send(snap.child("email").val());
+        }
+        else{
+            //username nao existe
+            res.header('Access-Control-Allow-Origin','*');
+            res.sendStatus(404);
+
+        }
+    }, fail =>{
+        res.sendStatus(500);
+    });
+});

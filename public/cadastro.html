@@ -22,30 +22,78 @@
 
 
     </script>
-    
-    <script src="scripts/jquery.js" type="text/javascript"></script>
-    <script src="scripts/cadastro.js" type="text/javascript"></script>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="styles/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="styles/estilo.css"  media="screen,projection"/>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/materialize.js"></script>
+        <script type="text/javascript" src="scripts/cadastro.js"></script>
+        <style>
+            header, main, footer {
+                padding-left: 300px;
+            }
+            .modal{
+                max-height: 100% !important;
+            }
+
+            .collapsible-header i{
+                line-height: 2;
+            }
+            span.brand-logo{
+                padding-left: 320px !important;
+            }
+
+        </style>
     <title>SMD webapp - Cadastro de aluno</title>
 </head>
 <body>
-    <form action="">
-        <label> Nome completo<input type="text" name="nome" ></label><br>
-        <label> Matrícula<input type="text" name="matricula"></label><br>
-        <label>CPF <input type="text" name="cpf"></label><br>
-        <input type="button" value="Cadastrar" id="envia">
-        <input type="reset">
-    </form>
-    <p>Usuarios cadastrados:</p>
-    <table id="usuarios" class="tabela">
-        <thead>
-            <th>Nome</th>
-            <th>Matrícula</th>
-            <th>CPF</th>
-        </thead>
-        <tbody id="tbd-alunos">
-            <!--CONTEUDO DINAMICO: ALUNOS CADASTRADOS-->
-        </tbody>
-
-    </table>
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <div class="nav-wrapper">
+            <span class="brand-logo">Cadastro de admins</span>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="mdl-navigation__link" href="noticias.html">Nova noticia</a></li>
+                <li><a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a></li>
+                <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
+                <li><a class="mdl-navigation__link" href="#">Logout</a></li>
+            </ul>
+        </div>        
+    </nav>
+    <!-- SIDE BAR -->
+    <ul id="slide-out" class="side-nav fixed">
+                <li class="logo"><a href="#" class="brand-logo logo"><object data="images/logo_smd_black.svg" type="image/svg+xml"></object></a></li>
+                <li><a class="mdl-navigation__link" href="noticias.html">Nova noticia</a></li>
+                <li><a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a></li>
+                <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
+                <li><a class="mdl-navigation__link" href="#">Logout</a></li>
+    </ul>
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="row">
+            <form action="">
+                <div class="input-field">
+                    <input type="text" id="username">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field">
+                    <input type="email" id="email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="senha" class="validate" >
+                    <label for="senha">Senha</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="senha-repita" class="validate">
+                    <label for="senha-repita" data-error="Senhas não conferem">Repita a senha</label>
+                </div>
+                <button class="btn waves-effect" id="enviar" type="button">Enviar</button>
+            </form>
+        </div>
+    </main>    
 </body>
 </html>
