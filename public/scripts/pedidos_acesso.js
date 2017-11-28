@@ -55,11 +55,11 @@ function adicionarBotoes(row, accept, reject){
 
     btnDeferir.innerHTML = "Deferir";
     btnDeferir.addEventListener("click",accept);
-    btnDeferir.className += "mdl-button mdl-js-button mdl-js-ripple-effect";
+    btnDeferir.className += "btn-flat waves-effect waves-light";
     row.insertCell(3).appendChild(btnDeferir);
 
     btnIndeferir.innerHTML = "Indeferir";
     btnIndeferir.addEventListener("click",reject);
-    btnIndeferir.className += "mdl-button mdl-js-button mdl-js-ripple-effect";
+    btnIndeferir.className += "btn-flat waves-effect waves-light";
     row.insertCell(4).appendChild(btnIndeferir);
 }

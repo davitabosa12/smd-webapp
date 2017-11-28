@@ -3,56 +3,69 @@
   <head>
     <meta charset="utf-8">
 
-    <!-- MATERIAL DESIGN LITE   -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="styles/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="styles/estilo.css"  media="screen,projection"/>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/materialize.js"></script>
 
     <title>Pedidos de acesso</title>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
     <script type="text/javascript" src="scripts/firebaseinit.js"></script>
     <script src="debug/scripts/faker.js"></script>
     <script src="scripts/pedidos_acesso.js"></script>
+
+    <style>
+        header, main, footer {
+            padding-left: 300px;
+        }
+        .modal{
+            max-height: 100% !important;
+        }
+
+        .collapsible-header i{
+            line-height: 2;
+        }
+        .btn-flat:hover{
+            background-color: #a00;
+        }
+
+        </style>
+
+
+
+
   </head>
   <body>
     <!-- NAVIGATION BAR -->
-    <div class="mdl-layout mdl-js-layout mdl-layout__header--fixed" id="barra-cima">
-        <header class="mdl-layout__header">
-
-            <div class="mdl-layout-icon"></div>
-
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout__title">SMD</span>
-                <div class="mdl-layout-spacer"></div>
-
-                <nav class="mdl-navigation">        
-                    <a class="mdl-navigation__link" href="noticias.html">Nova noticia</a>
-                    <a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a>
-                    <a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a>
-                    <a class="mdl-navigation__link" href="#">Logout</a>
-                </nav>
-            </div>
-
-            
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout__title">SMD</span>
-                <div class="mdl-layout-spacer"></div>
-                
-                <nav class="mdl-navigation">        
-                    <a class="mdl-navigation__link" href="noticias.html">Nova noticia</a>
-                    <a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a>
-                    <a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a>
-                    <a class="mdl-navigation__link" href="#">Logout</a>
-                </nav>
-        </div>
-
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">SMD</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="mdl-navigation__link" href="noticias.html">Nova noticia</a></li>
+                <li><a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a></li>
+                <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
+                <li><a class="mdl-navigation__link" href="#">Logout</a></li>
+            </ul>
+        </div>        
+    </nav>
+    <ul id="slide-out" class="side-nav fixed">
+                <li class="logo"><a href="#" class="brand-logo logo"><object data="images/logo_smd_black.svg" type="image/svg+xml"></object></a></li>
+                <li><a class="mdl-navigation__link" href="noticias.html">Nova noticia</a></li>
+                <li><a class="mdl-navigation__link" href="pedidos_acesso.html">Pedidos de Acesso</a></li>
+                <li><a class="mdl-navigation__link" href="pendencias.html">Ver Pendencias</a></li>
+                <li><a class="mdl-navigation__link" href="#">Logout</a></li>
+    </ul>
     <!--MAIN CONTENT-->
-        <main class="mdl-layout__content">
+        <main class="container">
 
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--12-col">
-                   <table class="mdl-data-table mdl-js-data-table">
+            <div class="row">
+                <div class="col s12">
+                   <table class="striped bordered">
                       <thead>
                         <tr>
                           <th class="mdl-data-table__cell--non-numeric">Nome Completo</th>
